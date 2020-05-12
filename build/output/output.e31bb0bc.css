@@ -1,0 +1,156 @@
+.x-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  font-size: 14px;
+  background-color: #272c34;
+  color: #dddbdb;
+  text-align: center;
+}
+
+.x-layers {
+  width: 10%;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+}
+.x-layers .x-action {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+.x-layers .x-action .top {
+  background: url(/top.07de573c.png) no-repeat center/100%;
+}
+.x-layers .x-action .bot {
+  background: url(/bot.bbc924e8.png) no-repeat center/100%;
+}
+.x-layers .x-action .top1 {
+  background: url(/top1.ce40c1d2.png) no-repeat center/100%;
+}
+.x-layers .x-action .bot1 {
+  background: url(/bot1.bd854306.png) no-repeat center/100%;
+}
+.x-layers .x-action .del {
+  background: url(/del.f6159f90.png) no-repeat center/100%;
+}
+.x-layers .x-action .save {
+  background: url(/save.80735b0f.png) no-repeat center/100%;
+}
+.x-layers .x-action .prev {
+  background: url(/prev.7183d2b2.png) no-repeat center/100%;
+}
+.x-layers .layers-list {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #404753;
+}
+.x-layers .layers-list .list-item {
+  padding: 20px 10px;
+}
+.x-layers .layers-list .list-item.active {
+  background-color: #4d5768;
+  color: #1296db;
+}
+
+.x-components {
+  width: 12%;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+}
+.x-components .components-list {
+  padding-top: 40px;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.x-components .components-list .list-item {
+  flex: 0 0 45%;
+  height: 100px;
+  border: 1px solid #ccc;
+  margin-left: 3%;
+  margin-top: 3%;
+  cursor: grabbing;
+}
+
+.x-view {
+  flex: 1;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: url(/bg.eafe4225.png) 100% center;
+}
+.x-view .canvas-div {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: auto;
+}
+
+.x-schema {
+  width: 300px;
+  height: 100%;
+}
+.x-schema .infos {
+  padding: 10px;
+}
+.x-schema .infos .infos-wrapper {
+  margin-top: 30px;
+  display: flex;
+}
+.x-schema .infos .infos-wrapper .label {
+  flex: 1;
+}
+.x-schema .infos .infos-wrapper .context {
+  width: 210px;
+  display: flex;
+  justify-content: space-around;
+}
+.x-schema .infos .infos-wrapper .context .x-item {
+  display: flex;
+  position: relative;
+}
+.x-schema .infos .infos-wrapper .context .x-item .x-input {
+  height: 26px;
+}
+.x-schema .infos .infos-wrapper .context .x-item .x-textarea {
+  width: 170px;
+  min-height: 80px;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+
+.x-title {
+  padding: 5px 20px;
+  font-size: 14px;
+  text-align: center;
+  background-color: #404753;
+}
+
+.x-icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+  cursor: pointer;
+}
+
+.x-icon:hover {
+  transform: scale(1.2);
+}
+.preview[data-v-a5b489] {
+  position: relative;
+  overflow: hidden;
+}
+.preview .dom[data-v-a5b489] {
+  position: absolute;
+}
+
+/*# sourceMappingURL=/output.e31bb0bc.css.map */
