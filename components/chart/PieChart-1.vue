@@ -40,60 +40,30 @@ export default {
       }
     },
     title() {
-      return {}
+      return this.models.title
     },
     legend() {
-      return this.models.legend.split(',')
+      let legend = Object.assign({}, this.models.legend)
+      let data = legend.data.split(',')
+      legend.data = data
+      return legend
     },
     seriesData() {
       const newArr = []
       const arr = this.models.seriesData.split(',')
       for(let i = 0; i < arr.length; i++) {
-        newArr.push({ value: arr[i], name: this.legend[i] })
+        newArr.push({ value: arr[i], name: this.legend.data[i] })
       }
       return newArr
-    }
-  },
-  data () {
-    return {
-      charts: {}
-    }
-  },
-  watch: {
-    'models.width' () {
-      this.charts.resize()
     },
-    'models.height' () {
-      this.charts.resize()
-    },
-    'models.seriesData' () {
-      const options = this.getOpt()
-      this.charts.setOption(options, true)
-    }
-  },
-  methods: {
-    getOpt () {
-      const options = {
-        title: {
-          text: 'xx',
-          left: 'center',
-          textStyle: {
-            color: '#ddd',
-            fontSize: 16
-          }
-        },
+    options() {
+      return {
+        title: JSON.parse(JSON.stringify(this.title)),
         tooltip: {
           trigger: 'item',
           formatter: '{a}<br/>{b}:{c} ({d}%)'
         },
-        legend: {
-          orient: 'vertical',
-          x: 'left',
-          data: this.legend,
-          textStyle: {
-            color: '#ddd'
-          }
-        },
+        legend: JSON.parse(JSON.stringify(this.legend)),
         series: [
           {
             name: '访问来源',
@@ -122,12 +92,28 @@ export default {
           }
         ]
       }
-      return options
+    }
+  },
+  data () {
+    return {
+      charts: {}
+    }
+  },
+  watch: {
+    'models.width' () {
+      this.charts.resize()
     },
+    'models.height' () {
+      this.charts.resize()
+    },
+    options () {
+      this.charts.setOption(this.options, true)
+    }
+  },
+  methods: {
     drawPie (id) {
       this.charts = echarts.init(document.getElementById(id))
-      const options = this.getOpt()
-      this.charts.setOption(options, true)
+      this.charts.setOption(this.options, true)
     }
   },
   mounted () {

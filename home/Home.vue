@@ -54,70 +54,8 @@
         </div>
       </div>
       <div class="x-schema">
-        <div class="page-info" v-if="activeComId === ''">
-          <div class="x-title">页面设置</div>
-          <div class="infos">
-            <div class="infos-wrapper">
-              <div class="label">屏幕大小</div>
-              <div class="context">
-                <div class="x-item">
-                  <input class="x-input x-number" v-model="page.width" type="number" step="1" min="1" max="2560" />
-                </div>
-                <div class="x-item">
-                  <input class="x-input x-number" v-model="page.height" type="number" step="1"  min="1" max="1440" />
-                </div>
-              </div>
-            </div>
-            <div class="infos-wrapper">
-              <div class="label">背景颜色</div>
-              <div class="context">
-                <div class="x-item">
-                  <ColorPicker :color="page.backgroundColor" @oncolor="selectColor"></ColorPicker>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="components-info" v-else>
-          <div class="x-title">组件配置</div>
-          <div class="infos" v-for="(item,index) in layers.filter((i) => i.layerId === activeComId)" :key="index">
-            <div class="infos-wrapper" v-for="it in item.files" :key="it.name">
-              <div class="label">{{it.title}}</div>
-              <div class="context">
-                <!--大小-->
-                <template v-if="it.type === 'size'">
-                  <div class="x-item" >
-                    <input class="x-input x-number" v-model="item.models.width"  />
-                  </div>
-                   <div class="x-item" >
-                    <input class="x-input x-number" v-model="item.models.height" />
-                  </div>
-                </template>
-                <!--位置-->
-                <template v-if="it.type === 'position'">
-                  <div class="x-item" >
-                    <input class="x-input x-number" v-model="item.models.x"  />
-                  </div>
-                   <div class="x-item" >
-                    <input class="x-input x-number" v-model="item.models.y" />
-                  </div>
-                </template>
-                <div class="x-item" v-if="it.type === 'color'">
-                  <ColorPicker v-model="item.models[it.name]" :color="item.models[it.name]" @oncolor="selectColor"></ColorPicker>
-                </div>
-                <div class="x-item" v-if="it.type === 'number'">
-                  <input class="x-input" v-model="item.models[it.name]" />
-                </div>
-                <div class="x-item" v-if="it.type === 'string'">
-                  <input class="x-input" v-model="item.models[it.name]" />
-                </div>
-                <div class="x-item" v-if="it.type === 'array'">
-                  <textarea class="x-textarea" v-model="item.models[it.name]" ></textarea>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <PageSchema :pageInfo="page" v-if="activeComId === ''"></PageSchema>
+        <component :is="activeLayer.schemaName" :schemaInfo="activeLayer" v-else></component>
       </div>
     </div>
     <div class="x-wrapper" v-else>
@@ -131,7 +69,7 @@ import 'vue-draggable-resizable/dist/VueDraggableResizable.css'
 import NavigatorLine from './componets/NavigatorLine.vue'
 import Ruler from './componets/Ruler.vue'
 import PreView from './componets/PreView.vue'
-import ColorPicker from './componets/ColorPicker.vue'
+import PageSchema from './componets/schema/page.vue'
 import { Schema } from './config/index.js'
 import axios from 'axios'
 export default {
@@ -139,12 +77,10 @@ export default {
   props: {
   },
   components: {
-    NavigatorLine, ColorPicker, Ruler, VueDraggableResizable, PreView
+    NavigatorLine, Ruler, VueDraggableResizable, PreView, PageSchema
   },
   data () {
     return {
-      showPreView: false,
-      layers: [],
       compons: [
         {
           title: '标题',
@@ -157,25 +93,29 @@ export default {
           name: 'piechart1'
         }
       ],
-      idIndex: 0,
       page: {
         width: 1920,
         height: 1080,
         backgroundColor: '#404753'
       },
+      showPreView: false,
+      layers: [],
+      idIndex: 0,
       // 选中组件id
       activeComId: ''
     }
   },
   computed: {
+    activeLayer() {
+      return this.layers.filter((i) => i.layerId === this.activeComId)[0]
+    }
   },
   watch: {
+    // activeLayer() {
+    //   console.log(this.activeLayer)
+    // }
   },
   methods: {
-     // 选择背景颜色
-    selectColor (color) {
-      this.page.backgroundColor = color
-    },
     // 选择图层
     selectLayer (id) {
       this.onCompActivated(id)
@@ -200,6 +140,7 @@ export default {
       const id = `${item.type + this.idIndex++}`
       this.layers.push(Object.assign({
         layerId: id,
+        schemaName: item.name + 'ma',
         files: [...schema[item.name].files],
         models: { ...schema[item.name].models }
       }, item))

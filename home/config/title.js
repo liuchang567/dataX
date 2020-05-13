@@ -2,24 +2,14 @@ export const titleSchema = {
   title1: {
     files: [
       {
-        title: '宽度',
-        type: 'number',
-        name: 'width'
+        title: '宽高',
+        type: 'size',
+        name: 'size'
       },
       {
-        title: '高度',
-        type: 'number',
-        name: 'height'
-      },
-      {
-        title: 'x轴坐标',
-        type: 'number',
-        name: 'x'
-      },
-      {
-        title: 'y轴坐标',
-        type: 'number',
-        name: 'y'
+        title: 'xy坐标',
+        type: 'position',
+        name: 'position'
       },
       {
         title: '名称',

@@ -46,7 +46,9 @@ export default {
 </script>
 <style scoped>
 .color-wrapper{
+  width: 100%;
   position: relative;
+  cursor: pointer;
 }
 .color-picker {
   position: absolute;
@@ -55,7 +57,7 @@ export default {
   left: -35px;
 }
 .color {
-  width: 190px;
+  width: 100%;
   display: block;
   height: 26px;
 }
