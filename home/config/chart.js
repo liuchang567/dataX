@@ -39,7 +39,7 @@ export const chartSchema = {
       {
         title: '数据',
         type: 'array',
-        name: 'legendData'
+        name: 'seriesData'
       }
     ],
     models: {
