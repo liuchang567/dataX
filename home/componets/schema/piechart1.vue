@@ -58,7 +58,14 @@
               <textarea class="x-textarea"  v-model="schemaInfo.models.legend.data"></textarea>
             </div>
           </template>
-
+          <template v-if="it.name === 'radius'">
+            <div class="x-item">
+              <input class="x-input" v-model="schemaInfo.models.wradius" />
+            </div>
+            <div class="x-item">
+              <input class="x-input" v-model="schemaInfo.models.nradius" />
+            </div>
+          </template>
           <div class="x-item" v-if="it.name === 'seriesData'">
             <textarea
               class="x-textarea"

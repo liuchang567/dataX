@@ -32,9 +32,14 @@ export const chartSchema = {
         name: 'legendData'
       },
       {
+        title: '圆心',
+        type: 'array',
+        name: 'radius'
+      },
+      {
         title: '数据',
         type: 'array',
-        name: 'seriesData'
+        name: 'legendData'
       }
     ],
     models: {
@@ -61,6 +66,8 @@ export const chartSchema = {
           color: '#ddd'
         }
       },
+      wradius: '50',
+      nradius: '70',
       seriesData: '50, 100, 120, 200'
     }
   }

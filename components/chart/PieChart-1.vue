@@ -48,6 +48,9 @@ export default {
       legend.data = data
       return legend
     },
+    radius() {
+      return [`${this.models.wradius}%`, `${this.models.nradius}%`]
+    },
     seriesData() {
       const newArr = []
       const arr = this.models.seriesData.split(',')
@@ -68,7 +71,7 @@ export default {
           {
             name: '访问来源',
             type: 'pie',
-            radius: ['50%', '70%'],
+            radius: this.radius,
             avoidLabelOverlap: false,
             label: {
               normal: {
