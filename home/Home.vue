@@ -23,8 +23,11 @@
       </div>
       <div class="x-components">
         <div class="x-title">组件</div>
-        <div class="components-list">
-          <div @click="selectCom(item)" class="list-item" v-for="(item,index) in compons" :key="index">{{item.title}}</div>
+        <div style="padding: 10px 0;">选择</div>
+        <div class="components-div">
+          <div class="components-list">
+            <div @click="selectCom(item)" class="list-item" v-for="(item,index) in compons" :key="index">{{item.title}}</div>
+          </div>
         </div>
       </div>
       <div class="x-view">
@@ -83,14 +86,24 @@ export default {
     return {
       compons: [
         {
-          title: '标题',
+          title: '标题1',
           type: 'title',
           name: 'title1'
         },
         {
-          title: '饼状图',
+          title: '饼状图1',
           type: 'piechart',
           name: 'piechart1'
+        },
+        {
+          title: '饼状图2',
+          type: 'piechart',
+          name: 'piechart2'
+        },
+        {
+          title: '曲线图1',
+          type: 'linechart',
+          name: 'linechart1'
         }
       ],
       page: {

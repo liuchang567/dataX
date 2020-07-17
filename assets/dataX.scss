@@ -61,20 +61,21 @@
   display: flex;
   overflow: hidden;
   flex-direction: column;
-  .components-list {
-    padding-top: 40px;
+  .components-div{
     flex: 1;
     overflow-y: auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    .list-item {
-      flex: 0 0 45%;
-      height: 100px;
-      border: 1px solid #ccc;
-      margin-left: 3%;
-      margin-top: 3%;
-      cursor: grabbing;
+    .components-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      .list-item {
+        flex: 0 0 45%;
+        height: 100px;
+        border: 1px solid #ccc;
+        margin-left: 3%;
+        margin-top: 3%;
+        cursor: grabbing;
+      }
     }
   }
 }
